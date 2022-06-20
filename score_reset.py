@@ -21,5 +21,3 @@ d['Worldle_Played'] = 0
 d['Worldle_Wins'] = 0
 d['Worldle_WinStreak'] = 0
 d['Worldle_WinPercentage'] = 0
-
-

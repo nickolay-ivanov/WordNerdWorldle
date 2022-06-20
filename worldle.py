@@ -13,6 +13,7 @@ FONT = pygame.font.Font("Fonts/Koulen-Regular.ttf", 25)
 AVAIABLE_COUNTRIES = countries
 CURRENT_ANSWER = ""
 CORRECT_COUNTRY = random.choice(list(AVAIABLE_COUNTRIES))
+print(CORRECT_COUNTRY)
 FIRST_GUESS = ""
 GUESSES = [[]] * 6
 NUM_OF_GUESSES_MADE = 0
@@ -105,26 +106,26 @@ def calculate_distance(box):
             else:
                 if AVAIABLE_COUNTRIES[CURRENT_ANSWER][0] > AVAIABLE_COUNTRIES[CORRECT_COUNTRY][0]:
                     if AVAIABLE_COUNTRIES[CURRENT_ANSWER][1] > AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1]:
-                        text = "The country is %d degrees South and %d degrees East to %s!" % \
+                        text = "The country is %d degrees South and %d degrees West from %s!" % \
                                ((AVAIABLE_COUNTRIES[CURRENT_ANSWER][0] - AVAIABLE_COUNTRIES[CORRECT_COUNTRY][0]),
                                 (AVAIABLE_COUNTRIES[CURRENT_ANSWER][1] - AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1]),
-                                (CURRENT_ANSWER))
+                                CURRENT_ANSWER)
                     else:
-                        text = "The country is %d degrees South and %d degrees West to %s!" % \
+                        text = "The country is %d degrees South and %d degrees East from %s!" % \
                                ((AVAIABLE_COUNTRIES[CURRENT_ANSWER][0] - AVAIABLE_COUNTRIES[CORRECT_COUNTRY][0]),
                                 (AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1] - AVAIABLE_COUNTRIES[CURRENT_ANSWER][1]),
-                                (CURRENT_ANSWER))
+                                CURRENT_ANSWER)
                 else:
                     if AVAIABLE_COUNTRIES[CURRENT_ANSWER][1] > AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1]:
-                        text = "The country is %d degrees North and %d degrees East to %s!" % \
+                        text = "The country is %d degrees North and %d degrees West from %s!" % \
                                ((AVAIABLE_COUNTRIES[CORRECT_COUNTRY][0] - AVAIABLE_COUNTRIES[CURRENT_ANSWER][0]),
                                 (AVAIABLE_COUNTRIES[CURRENT_ANSWER][1] - AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1]),
-                                (CURRENT_ANSWER))
+                                CURRENT_ANSWER)
                     else:
-                        text = "The country is %d degrees North and %d degrees West to %s!" % \
+                        text = "The country is %d degrees North and %d degrees East from %s!" % \
                                ((AVAIABLE_COUNTRIES[CORRECT_COUNTRY][0] - AVAIABLE_COUNTRIES[CURRENT_ANSWER][0]),
                                 (AVAIABLE_COUNTRIES[CORRECT_COUNTRY][1] - AVAIABLE_COUNTRIES[CURRENT_ANSWER][1]),
-                                (CURRENT_ANSWER))
+                                CURRENT_ANSWER)
 
             box.checked = True
             global NUM_OF_GUESSES_MADE
@@ -218,7 +219,7 @@ def main():
 
         if input_box1.filled and input_box2.filled and input_box3.filled and input_box4.filled and \
                 input_box5.filled and input_box6.filled and GAME_WON is False:
-            game_over = results_font.render("You Lost!", True, "aqua")  # noqa
+            game_over = results_font.render("You Lost! The Country was" + CORRECT_COUNTRY, True, "aqua")  # noqa
             game_overRect = game_over.get_rect()
             game_overRect.center = (WIDTH // 2, HEIGHT // 2 + 270)
             SCREEN.blit(game_over, game_overRect)
